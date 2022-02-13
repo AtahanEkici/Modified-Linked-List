@@ -4,54 +4,95 @@ package List;
  * @author Atahan Ekici
  * @param <T>
  */
-public class Modified_LinkedList <T>
+
+class Node <T>
 {
+    private Node prev;
+    private Node next;
+    
     private T data;
     
-    private int size = 0;
-    
-    private Modified_LinkedList prev;
-    private Modified_LinkedList next;
-    
-    public Modified_LinkedList()
+    public Node()
     {
         this.data = null;
         this.prev = null;
         this.next = null;
     }
     
-    public Modified_LinkedList(T dat)
+    public Node(T dat)
     {
         this.data = dat;
         this.prev = null;
         this.next = null;  
-        size++;
     }
+    
+    public T getData()
+    {
+        return this.data;
+    }
+    public void setData(T dat)
+    {
+        this.data = dat;
+    }
+    
+    public Node getPrev()
+    {
+        return this.prev;
+    }
+    public void setPrev(Node mll)
+    {
+        this.prev = mll;
+    }
+    
+    public Node getNext()
+    {
+        return this.next;
+    }
+    public void setNext(Node mll)
+    {
+        this.next = mll;
+    }
+}
+
+public class Modified_LinkedList <T>
+{
+    private Node <T> root;
+    private Node <T> head;
+    private int size;
+    
+    public Modified_LinkedList()
+    {
+        root = new Node();
+        size = 1;
+    }
+    
+    public Modified_LinkedList(T data)
+    {
+        root = new Node<>(data);
+        size = 1;
+    }
+    
     
     public void AddNode(T dat)
     {
-        Modified_LinkedList iter = this;
+        Node temp,iter = root;
         
         boolean complete = false;
-        
-        if(size <= 0)
-        {
-            this.data = dat;
-            size++;
-            return;
-        }
         
         while(complete == false)
         { 
             if(iter.getNext() == null)
             {
-                iter.next = new Modified_LinkedList(dat);
-                iter.next.prev = iter;
+                temp = new Node(dat);
+                iter.setNext(temp);
+                iter.getNext().setPrev(iter);
                 complete = true;
+                size++;
+                head = temp;
             }
             else
             {
-                iter = iter.next; // Iterate //
+                iter = iter.getNext(); // Iterate //
             } 
         }
     }
@@ -63,10 +104,10 @@ public class Modified_LinkedList <T>
             return null;
         }
         
-        Modified_LinkedList iter = this;
+        Node iter = root;
         int counter = 0;
         
-         while(iter != null)
+        while(iter != null)
         {
             if(counter == i)
             {
@@ -74,7 +115,7 @@ public class Modified_LinkedList <T>
             }
             
             System.out.print(iter.getData()+" -> ");
-            iter = iter.next;
+            iter = iter.getNext();
             counter++;
         }
         
@@ -88,22 +129,35 @@ public class Modified_LinkedList <T>
     
     public void printAll()
     {
-        Modified_LinkedList iter = this;
+        Node iter = root;
         
         System.out.print("\n ----------- Printing ALL ----------- \n");
         
         while(iter != null)
         {
             System.out.print(iter.getData()+" -> ");
-            iter = iter.next;
+            iter = iter.getNext();
         }
+        System.out.print("end");
+    }
+    
+    public void printAllReversed()
+    {
+        Node iter = head;
         
+        System.out.print("\n ----------- Printing ALL ----------- \n");
+        
+        while (iter != null)
+        {
+            System.out.print(iter.getData()+" <- ");
+            iter = iter.getPrev();
+        }
         System.out.print("end");
     }
     
     public void RemoveAll(T dat)
     {
-        Modified_LinkedList iter = this;
+        Node iter = root;
 
         while(iter != null)
         {
@@ -111,42 +165,29 @@ public class Modified_LinkedList <T>
             
             if(dat == iter.getData())
             {
-                //iter.data = null;
-                iter.prev.next = iter.next;
-                
-                if(iter.next != null)
+                if(iter != root)
                 {
-                    iter.next.prev = iter.prev;
-                }  
+                    iter.getPrev().setNext(iter.getNext());
+                }
+                if(iter != head)
+                {
+                    iter.getNext().setPrev(iter.getPrev());
+                } 
+                
+                if(iter == head)
+                {
+                    head = iter.getPrev();
+                }
+                
+                if(iter == root)
+                {
+                    root = root.getNext();
+                }
+                
+                iter.setData(null);
+                size--;
             }
-            iter = iter.next;
+            iter = iter.getNext();
         }
-    }
-    
-    public T getData()
-    {
-        return this.data;
-    }
-    public void setData(T dat)
-    {
-        this.data = dat;
-    }
-    
-    public Modified_LinkedList getPrev()
-    {
-        return this.prev;
-    }
-    public void setPrev(Modified_LinkedList mll)
-    {
-        this.prev = mll;
-    }
-    
-    public Modified_LinkedList getNext()
-    {
-        return this.next;
-    }
-    public void setNext(Modified_LinkedList mll)
-    {
-        this.next = mll;
     }
 }
