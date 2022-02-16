@@ -91,6 +91,7 @@ public class Modified_LinkedList <T>
             next.setPrev(temp);
             temp.setPrev(root);
         }
+        size++;
     }
     
     public void AddNode(T dat)
@@ -125,7 +126,7 @@ public class Modified_LinkedList <T>
         {
             root.setNext(temp);
             temp.setPrev(root);
-            head = temp;
+            head = temp; 
         }
         else
         {
@@ -133,6 +134,7 @@ public class Modified_LinkedList <T>
             temp.setPrev(head);
             head = temp;
         }
+        size++;
     }
     
     public T get(int i)
