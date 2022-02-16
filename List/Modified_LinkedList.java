@@ -72,6 +72,26 @@ public class Modified_LinkedList <T>
         size = 1;
     }
     
+    public void AddNodeFirst(T dat)
+    {
+        Node temp = new Node<>(dat);
+        
+        if(size <= 1)
+        {
+            root.setNext(temp);
+            temp.setPrev(root);
+        }
+        else
+        {
+            Node next = root.getNext();
+
+            root.setNext(temp);
+            temp.setNext(next);
+
+            next.setPrev(temp);
+            temp.setPrev(root);
+        }
+    }
     
     public void AddNode(T dat)
     {
@@ -94,6 +114,24 @@ public class Modified_LinkedList <T>
             {
                 iter = iter.getNext(); // Iterate //
             } 
+        }
+    }
+    
+    public void AddNodeFast(T dat)
+    {
+        Node temp = new Node<>(dat);       
+        
+        if(head == null)
+        {
+            root.setNext(temp);
+            temp.setPrev(root);
+            head = temp;
+        }
+        else
+        {
+            head.setNext(temp);
+            temp.setPrev(head);
+            head = temp;
         }
     }
     
