@@ -245,12 +245,12 @@ public class Modified_LinkedList <T>
     @Override
     public String toString() 
     {
-        String total = "";
-        String head = "Head: " + String.valueOf(this.head.getData());
-        String root = "Root: " +String.valueOf(this.root.getData());
-        String size = "Size: " +String.valueOf(this.getSize());
+        String total = "\n";
+        String head = "Head: " + String.valueOf(this.head.getData()+ "\n");
+        String root = "Root: " +String.valueOf(this.root.getData()+ "\n");
+        String size = "Size: " +String.valueOf(this.getSize()) + "\n";
         
-        total = head + root + size;
+        total += head + root + size;
         return total;
     }
 }
