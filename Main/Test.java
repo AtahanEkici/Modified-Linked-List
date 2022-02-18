@@ -19,7 +19,7 @@ public class Test
         test_int.printAll();
         test_int.RemoveAll(10);
         test_int.printAll();
-        System.out.println("Size: "+test_int.getSize()+"");
+        System.out.println("\nSize: "+test_int.getSize()+"");
 
         
         test_string.AddNode("Deneme1");
@@ -28,11 +28,20 @@ public class Test
         test_string.printAll();
         test_string.RemoveAll("Deneme2");
         test_string.printAll();
-        System.out.println("Size: "+test_string.getSize()+"");
+        System.out.println("\nSize: "+test_string.getSize()+"");
         
         System.out.println();
         
         test_int.printAllReversed();
         test_string.printAllReversed();
+        
+        test_int.AddNodeFirst(69);
+        test_int.printAll();
+        
+        //System.out.println("\nSize: "+test_int.getSize()+"");
+        
+        //System.out.println("\nGet Data: "+test_int.getData(3));
+        
+        System.out.println(test_int);
     }
 }
