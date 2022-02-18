@@ -9,7 +9,7 @@ class Node <T>
 {
     private Node prev;
     private Node next;
-    
+
     private T data;
     
     public Node()
@@ -51,6 +51,18 @@ class Node <T>
     public void setNext(Node mll)
     {
         this.next = mll;
+    }
+    
+    @Override
+    public String toString() 
+    {
+        String total = "";
+        String _data = "Data: " + String.valueOf(this.data);
+        String _prev = "Prev: " +String.valueOf(this.prev);
+        String _next = "Next: " +String.valueOf(this.next);
+        
+        total = _data + _prev + _next;
+        return total;
     }
 }
 
@@ -137,28 +149,27 @@ public class Modified_LinkedList <T>
         size++;
     }
     
-    public T get(int i)
+    public T getData(int i)
     {
         if(i > this.getSize())
         {
+            System.out.println("Given index exceeds size");
             return null;
         }
         
         Node iter = root;
-        int counter = 0;
+        int counter = 1;
         
         while(iter != null)
         {
             if(counter == i)
             {
-                return (T)iter;
+                return (T)iter.getData();
             }
-            
-            System.out.print(iter.getData()+" -> ");
             iter = iter.getNext();
             counter++;
         }
-        
+        System.out.println("Error");
         return null;
     }
     
@@ -229,5 +240,17 @@ public class Modified_LinkedList <T>
             }
             iter = iter.getNext();
         }
+    }
+    
+    @Override
+    public String toString() 
+    {
+        String total = "";
+        String head = "Head: " + String.valueOf(this.head.getData());
+        String root = "Root: " +String.valueOf(this.root.getData());
+        String size = "Size: " +String.valueOf(this.getSize());
+        
+        total = head + root + size;
+        return total;
     }
 }
