@@ -1,4 +1,8 @@
 package List;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Atahan Ekici
@@ -51,6 +55,23 @@ class Node <T>
     public void setNext(Node mll)
     {
         this.next = mll;
+    }
+    
+    @Override
+    protected void finalize()
+    {
+        try 
+        {
+            System.out.println(this.data+" removed");
+            this.data = null;
+            this.next = null;
+            this.prev = null;
+            super.finalize();
+        } 
+        catch (Throwable ex) 
+        {
+            Logger.getLogger(Node.class.getName()).log(Level.SEVERE, null, ex);
+        }     
     }
     
     @Override
@@ -151,14 +172,14 @@ public class Modified_LinkedList <T>
     
     public T getData(int i)
     {
-        if(i > this.getSize())
+        if(i > this.getSize() -1)
         {
             System.out.println("Given index exceeds size");
             return null;
         }
         
         Node iter = root;
-        int counter = 1;
+        int counter = 0;
         
         while(iter != null)
         {
@@ -206,14 +227,47 @@ public class Modified_LinkedList <T>
         System.out.print("end");
     }
     
+    public void RemoveIndex(int index)
+    {
+        if(this.getSize() < index || index < 0)
+        {
+            System.out.println("index exceeding list size");
+            return;
+        }
+        
+        Node iter = root;
+        int counter = 0;
+        
+        while(iter != null)
+        {
+            if(counter != index)
+            {
+                iter = iter.getNext();
+                counter++;
+            }
+            else
+            {
+                Node prev = iter.getPrev();
+                Node next = iter.getNext();
+                
+                if(next != null)
+                {
+                    prev.setNext(next);
+                    next.setPrev(prev);
+                }
+                iter.finalize();
+                return;
+            }
+        }
+        
+    }
+    
     public void RemoveAll(T dat)
     {
         Node iter = root;
 
         while(iter != null)
         {
-            //System.out.println("\n"+dat.toString() + " " + iter.getData().toString()+ ": "); System.out.print(dat == iter.getData());
-            
             if(dat == iter.getData())
             {
                 if(iter != root)
