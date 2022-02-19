@@ -43,5 +43,24 @@ public class Test
         //System.out.println("\nGet Data: "+test_int.getData(3));
         
         System.out.println(test_int);
+        
+        long start = System.nanoTime();
+        test_int.AddNodeFast(55);
+        long end = System.nanoTime();
+        
+        long start1 = System.nanoTime();
+        test_int.AddNode(55);
+        long end1 = System.nanoTime();
+        
+        test_int.printAll();
+        
+        System.out.println("\nIt took "+(end - start)+" for Fast");
+        System.out.println("\nIt took "+(end1 - start1)+" for Normal");
+        
+        System.out.println("Data: "+test_int.getData(4)+"");
+        
+        test_int.RemoveIndex(3);
+        
+        test_int.printAll();
     }
 }
