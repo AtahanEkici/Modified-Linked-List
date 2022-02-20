@@ -2,6 +2,7 @@ package List;
 /**
  *
  * @author Atahan Ekici
+ * @param <T>
  */
 public class Modified_LinkedList <T>
 {
@@ -34,6 +35,12 @@ public class Modified_LinkedList <T>
     {
         Node temp = new Node<>(dat);
         
+        if(root == null)
+        {
+            root = temp;
+            return;
+        }
+        
         if(size <= 1)
         {
             root.setNext(temp);
@@ -55,6 +62,12 @@ public class Modified_LinkedList <T>
     public void AddNode(T dat)
     {
         Node temp,iter = root;
+        
+        if(root == null)
+        {
+            root = iter;
+            return;
+        }
         
         boolean complete = false;
         
@@ -78,7 +91,13 @@ public class Modified_LinkedList <T>
     
     public void AddNodeFast(T dat)
     {
-        Node temp = new Node<>(dat);       
+        Node temp = new Node<>(dat);      
+        
+        if(root == null)
+        {
+            root = temp;
+            return;
+        }
         
         if(head == null)
         {
