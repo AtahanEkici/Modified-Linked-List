@@ -1,5 +1,6 @@
 package Main;
 import List.Modified_LinkedList;
+import List.Node;
 
 /**
  *
@@ -60,6 +61,10 @@ public class Test
         System.out.println("Data: "+test_int.getData(4)+"");
         
         test_int.RemoveIndex(3);
+        
+        test_int.printAll();
+        
+        Sorter.Sorters.BubbleSort(test_int);
         
         test_int.printAll();
     }
