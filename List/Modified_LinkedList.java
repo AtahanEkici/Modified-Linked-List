@@ -147,28 +147,32 @@ public class Modified_LinkedList <T>
     {
         Node iter = root;
         
-        System.out.print("\n ----------- Printing ALL ----------- \n");
+        System.out.print("\n----------- Printing ALL ----------- \n");
+        
+        System.out.print("begin -> ");
         
         while(iter != null)
         {
             System.out.print(iter.getData()+" -> ");
             iter = iter.getNext();
         }
-        System.out.print("end");
+        System.out.print("end\n");
     }
     
     public void printAllReversed()
     {
         Node iter = head;
         
-        System.out.print("\n ----------- Printing ALL ----------- \n");
+        System.out.print("\n----------- Printing ALL ----------- \n");
+        
+        System.out.print("begin <- ");
         
         while (iter != null)
         {
             System.out.print(iter.getData()+" <- ");
             iter = iter.getPrev();
         }
-        System.out.print("end");
+        System.out.print("end\n");
     }
     
     public void RemoveIndex(int index)
@@ -243,7 +247,7 @@ public class Modified_LinkedList <T>
     public String toString() 
     {
         String total = "\n";
-        String head = "Head: " + String.valueOf(this.head.getData()+ "\n");
+        String head = "Head: " +String.valueOf(this.head.getData()+ "\n");
         String root = "Root: " +String.valueOf(this.root.getData()+ "\n");
         String size = "Size: " +String.valueOf(this.getSize()) + "\n";
         
